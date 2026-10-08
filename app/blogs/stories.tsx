@@ -1,11 +1,13 @@
 import type { ComponentType } from "react";
+import { publicAssetBasePath } from "../lib/contact";
 import SocLabStory from "./SocLabStory";
 
 type Block =
   | { type: "p"; text: string }
   | { type: "h"; text: string }
   | { type: "ul" | "ol"; items: string[] }
-  | { type: "code"; text: string };
+  | { type: "code"; text: string }
+  | { type: "img"; src: string; alt: string; caption?: string };
 
 // To add a story: add an entry to this list. Write the body as blocks
 // (paragraphs, headings, lists, code), or point `component` at a custom
@@ -29,6 +31,80 @@ export const stories: Story[] = [
     summary:
       "Kali on one side, a Windows machine on the other, Wazuh in the middle. I attacked myself and tried to catch it.",
     component: SocLabStory,
+  },
+  {
+    slug: "is-this-website-secure",
+    title: "How to check if a website is secure",
+    tag: "Quick Learning",
+    readTime: "3 min read",
+    summary: "What HTTP and HTTPS actually mean, and the three clicks I use to check any site.",
+    body: [
+      {
+        type: "p",
+        text: "People ask me this a lot, usually right before they type a card number somewhere. The good news is your browser already does most of the checking. You just need to know where to look.",
+      },
+      { type: "h", text: "First, HTTP vs HTTPS" },
+      {
+        type: "p",
+        text: "HTTP is how your browser and a website talk to each other. The problem with plain HTTP is that everything goes across in readable text. Anyone sitting on the same network, like on public Wi-Fi at a café, can see what you send, including passwords.",
+      },
+      {
+        type: "p",
+        text: "HTTPS is the same thing with an S for secure. It wraps the conversation in encryption (TLS), so anyone in the middle just sees scrambled data. It also proves the site is who it says it is, using a certificate that a trusted authority has signed.",
+      },
+      {
+        type: "ul",
+        items: [
+          "HTTP: readable by anyone in between, and no proof of who you're talking to.",
+          "HTTPS: encrypted, and the site has shown a valid certificate.",
+        ],
+      },
+      { type: "h", text: "How to check, step by step" },
+      {
+        type: "p",
+        text: "I'll use my own portfolio as the example. In Chrome, start with the small icon on the left of the address bar. It used to be a padlock and now looks like two little sliders.",
+      },
+      {
+        type: "img",
+        src: "/blogs/https-address-bar.png",
+        alt: "Chrome address bar showing the site information icon next to talhamirmd.github.io",
+        caption: "Step 1: the icon to the left of the web address.",
+      },
+      {
+        type: "p",
+        text: "Click it. If the site uses HTTPS properly, the first line says \"Connection is secure\".",
+      },
+      {
+        type: "img",
+        src: "/blogs/https-site-info.png",
+        alt: "Chrome site information panel saying Connection is secure",
+        caption: "Step 2: \"Connection is secure\" is what you want to see.",
+      },
+      {
+        type: "p",
+        text: "Click \"Connection is secure\" to go one level deeper. You should see \"Certificate is valid\". Click that too if you're curious. It shows who the certificate was issued to, who issued it, and when it expires.",
+      },
+      {
+        type: "img",
+        src: "/blogs/https-certificate.png",
+        alt: "Chrome security panel showing Connection is secure and Certificate is valid",
+        caption: "Step 3: a valid certificate means the site proved its identity.",
+      },
+      { type: "h", text: "Red flags" },
+      {
+        type: "ul",
+        items: [
+          "\"Not secure\" next to the address. The site is on plain HTTP, so don't type anything private into it.",
+          "A full-page warning like \"Your connection is not private\". The certificate is broken, expired or fake. Go back, don't click through.",
+          "A web address that's almost right, like paypa1.com or amaz0n-support.net. Check the spelling every time.",
+        ],
+      },
+      { type: "h", text: "The catch" },
+      {
+        type: "p",
+        text: "HTTPS means the connection is private. It doesn't mean the site is honest. Scam sites get free certificates too, so a scam can still show \"Connection is secure\". Use HTTPS as the minimum, then still check the web address and trust your gut.",
+      },
+    ],
   },
   {
     slug: "brute-force-triage",
@@ -132,6 +208,21 @@ function renderBlock(block: Block, index: number) {
         <h3 key={index} className="pt-2 text-base font-medium text-[#171411]">
           {block.text}
         </h3>
+      );
+    case "img":
+      return (
+        <figure key={index} className="py-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${publicAssetBasePath}${block.src}`}
+            alt={block.alt}
+            loading="lazy"
+            className="w-full max-w-md rounded-[16px] border border-[#171411]/10 bg-white shadow-sm"
+          />
+          {block.caption && (
+            <figcaption className="mt-3 text-xs text-[#5c544d]">{block.caption}</figcaption>
+          )}
+        </figure>
       );
     case "code":
       return (

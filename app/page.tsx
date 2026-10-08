@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import QuickLearning from "./components/QuickLearning";
 import SocLabSummary from "./components/SocLabSummary";
 import TechStack from "./components/TechStack";
 import Terminal from "./components/Terminal";
@@ -42,7 +43,7 @@ const navItems = [
 
 const securityNodes = [
   { name: "CYBER SECURITY", x: "50%", y: "9%" },
-  { name: "SOC", x: "27%", y: "22%" },
+  { name: "DEVELOPMENT", x: "25%", y: "22%" },
   { name: "VAPT", x: "13%", y: "43%" },
   { name: "WAZUH", x: "20%", y: "67%" },
   { name: "NETWORK", x: "38%", y: "87%" },
@@ -56,17 +57,17 @@ const expertise = [
   {
     title: "Security Operations",
     description:
-      "Threat detection, incident response, log review, endpoint monitoring, and escalation workflows.",
+      "Reading logs, spotting what doesn't belong, and working an incident from the first alert to the final write-up.",
   },
   {
     title: "Vulnerability Assessment",
     description:
-      "Nmap, Nessus, OWASP ZAP, Burp Suite, SQLMap, and remediation tracking for risk reduction.",
+      "Finding the holes before someone else does, with Nmap, Nessus, Burp Suite, ZAP and SQLMap, then chasing them until they're actually fixed.",
   },
   {
     title: "IT Infrastructure",
     description:
-      "Network troubleshooting, Windows/Linux administration, access controls, and endpoint support.",
+      "Networks, Windows and Linux servers, accounts and access. The everyday stuff that has to work before security even matters.",
   },
 ];
 
@@ -108,7 +109,7 @@ const securityTools = [
   },
   {
     title: "Network & Access",
-    items: ["Active Directory", "VPN", "DNS / DHCP", "IAM Hygiene"],
+    items: ["Active Directory", "VPN", "DNS / DHCP", "Access reviews"],
   },
   {
     title: "Endpoint Support",
@@ -121,21 +122,21 @@ const projects = [
     title: "SOC-LAB-Setup",
     type: "Security monitoring lab",
     description:
-      "Built a Wazuh-based SOC lab for log collection, alert review, incident simulation, and endpoint event investigation.",
+      "A home lab running Wazuh, where I attack my own machine and practise catching myself.",
     href: "https://github.com/talhamirmd/SOC-Lab-Test",
   },
   {
     title: "Medical Recommendation System",
     type: "AI + healthcare",
     description:
-      "Designed a symptom-based recommendation system using Python, Django, and machine learning for medical guidance.",
+      "You type in your symptoms and it suggests a medicine to talk through with a doctor. Django on the front, NLP-based machine learning underneath.",
     href: "https://github.com/talhamirmd/Drug-Recomendation",
   },
   {
     title: "Fashion Recommendation System",
     type: "Computer vision",
     description:
-      "Developed a model-based outfit recommendation system using Python, OpenCV, and ResNet50-based image processing.",
+      "An outfit recommender that looks at clothing images and suggests what goes together. OpenCV and a ResNet50 model do the looking.",
     href: "https://github.com/talhamirmd/Fashion-Recomendation-System",
   },
 ];
@@ -248,13 +249,13 @@ export default function Home() {
               <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#171411]/75">
                 {botStage === "cv" ? (
                   <>
-                    Download My CV,
+                    Want the full picture?
                     <br />
-                    It&apos;s only 4 MB.
+                    My CV is two pages, promise.
                   </>
                 ) : (
                   <>
-                    Do a screening call now.
+                    Still here? Let&apos;s just talk.
                     <br />
                     I&apos;m one message away.
                   </>
@@ -375,22 +376,16 @@ export default function Home() {
             className="relative z-10 max-w-full"
           >
             <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.28em] text-[#5c544d]">
-              Cybersecurity • IT support • infrastructure
+              Riyadh, Kingdom of Saudi Arabia
             </p>
 
             <h1 className="max-w-[18ch] text-[2.5rem] font-semibold leading-[0.92] tracking-[-0.07em] text-[#171411] sm:text-5xl md:text-6xl lg:text-7xl">
               Mir Mohammed Talha
             </h1>
 
-            <h2 className="mt-4 max-w-2xl text-lg font-medium tracking-[-0.04em] text-[#3d352f] sm:text-xl md:text-2xl">
-              Cybersecurity & IT Infrastructure Professional
-            </h2>
-
             <p className="mt-5 max-w-xl text-sm leading-6 text-[#403a35] sm:text-base sm:leading-7 md:text-lg">
-              Cybersecurity enthusiast with practical experience in security
-              operations, incident response, vulnerability assessment, IT
-              infrastructure support, network administration, access management,
-              endpoint security, and application security.
+              An IT professional based in Riyadh, Saudi Arabia, with hands-on experience across IT support, system administration, cybersecurity, backend development, databases, APIs, and enterprise applications.
+              I enjoy solving technical problems, improving IT operations, and building practical solutions that make systems more secure, reliable, and efficient.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -551,10 +546,9 @@ export default function Home() {
                   <div
                     className="rounded-full border border-[#171411]/15 bg-white/90 px-3 py-1.5 text-[9px] font-medium uppercase tracking-[0.14em] text-[#171411] shadow-[0_0_18px_rgba(139,109,90,0.08)] transition-all duration-200 hover:border-[#8b6d5a] hover:text-[#8b6d5a] sm:text-[10px]"
                     style={{
-                      whiteSpace: "pre-line",
+                      whiteSpace: "pre",
                       lineHeight: "1.2",
                       textAlign: "center",
-                      maxWidth: "90px",
                     }}
                   >
                     {node.name}
@@ -600,21 +594,21 @@ export default function Home() {
               About
             </p>
             <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#171411] md:text-5xl">
-              Security-minded, systems-focused, and practical.
+              I like knowing how things break.
             </h2>
           </div>
 
           <div className="space-y-4 text-base leading-7 text-[#403a35]">
             <p>
-              I work at the intersection of cybersecurity, IT infrastructure, and
-              operational reliability—helping organizations protect systems,
-              investigate incidents, and keep digital environments secure and
-              dependable.
+              I started out building web apps, and the more I built, the more I
+              wondered how someone would break them. That question pulled me into
+              security: a pentesting internship at CDAC, a SOC lab at home, and now
+              IT work where the problems are real and someone is waiting on the fix.
             </p>
             <p>
-              My experience includes security operations, access management, network
-              troubleshooting, endpoint protection, application security support, and
-              vulnerability remediation across real-world environments.
+              The part I enjoy most is the investigating. Something looks wrong, and
+              you follow the logs until you know why. Best case, the answer turns into
+              a fix that stops it happening again.
             </p>
           </div>
         </div>
@@ -623,7 +617,7 @@ export default function Home() {
       <section id="experience" className="mx-auto max-w-7xl px-5 py-20">
         <div className="mb-8">
           <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#171411] md:text-5xl">
-            Experience.
+            Where I&apos;ve worked.
           </h2>
         </div>
 
@@ -655,11 +649,12 @@ export default function Home() {
               </div>
 
               <p className="relative z-10 mt-4 max-w-3xl text-sm leading-6 text-[#403a35]">
-                Investigated malware infections, suspicious activity, and security
-                events; monitored endpoint protection, patching, and vulnerability
-                remediation; managed Microsoft 365 and Active Directory access;
-                configured and troubleshot network services including TCP/IP, DNS,
-                DHCP, VPN, routers, switches, and wireless connectivity.
+                I&apos;m who people call when something&apos;s wrong. Some days that&apos;s a VPN
+                that won&apos;t connect or a switch acting up. Other days it&apos;s a laptop
+                behaving strangely, and I&apos;m working out what happened, cleaning it up,
+                and escalating when it needs to go higher. I also look after Microsoft
+                365 and Active Directory accounts, patching, and backups for our Windows
+                and Linux servers.
               </p>
             </article>
 
@@ -682,9 +677,10 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-sm leading-6 text-[#403a35]">
-                Developed and maintained secure web applications, applied secure coding
-                practices, performed code reviews, fixed application vulnerabilities,
-                and supported application security and reliability improvements.
+                Built and maintained web apps with security in mind from the start:
+                proper login and permission checks, input validation, and code reviews
+                that caught problems before they shipped. When something broke, I
+                read the logs and helped track down why.
               </p>
             </article>
 
@@ -707,10 +703,10 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-sm leading-6 text-[#403a35]">
-                Conducted penetration tests and vulnerability assessments using OWASP
-                ZAP, Burp Suite, Nessus, Nmap, and SQLMap; documented findings,
-                supported incident handling activities, and maintained security
-                reporting work.
+                My first proper taste of offensive security. I spent three months
+                poking holes in web apps with Burp Suite, OWASP ZAP, Nessus, Nmap and
+                SQLMap, then writing up what I found and how to fix it. We also ran
+                incident-handling drills and covered IDS/IPS and SIEM basics.
               </p>
               <a
                 href="https://c-huk.cdacb.in/certgen/certificatePRCTM.php?hash=MjAyNTA0MDQwMDEwfE1pciBNb2hhbW1lZCBUYWxoYQ%3D%3D"
@@ -741,9 +737,9 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-sm leading-6 text-[#403a35]">
-                Through organized analysis and reporting, I helped track problems with data quality and look into discrepancies.
-                Maintained records, reports, and validation outcomes to support documentation and governance procedures.
-                Worked with cross-functional teams to find and fix data-related problems that had an impact on company operations.
+                Finding where the numbers didn&apos;t add up and working out why. I built
+                reports and dashboards in Power BI and Python, kept track of what had
+                been checked, and worked with other teams to fix problems at the source.
               </p>
             </article>
 
@@ -766,8 +762,9 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-sm leading-6 text-[#403a35]">
-                Designed and developed a user-friendly online grocery management interface.
-                Developed secure web applications, applying secure coding practices to prevent common vulnerabilities such as SQL Injection and Cross-Site Scripting (XSS).
+                My first job. I built an online grocery management interface and learned
+                early to guard against things like SQL injection and XSS. I also did
+                regular code reviews and basic vulnerability checks on our web apps.
               </p>
             </article>
           </div>
@@ -780,7 +777,7 @@ export default function Home() {
             Skills
           </p>
           <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#171411] md:text-5xl">
-            Core technical capability.
+            What I&apos;m good at.
           </h2>
         </div>
 
@@ -823,7 +820,7 @@ export default function Home() {
             Security Arsenal
           </p>
           <h2 className="text-3xl font-semibold tracking-[-0.05em] text-[#171411] md:text-5xl">
-            Tools and security practices.
+            What I reach for.
           </h2>
         </div>
 
@@ -877,6 +874,8 @@ export default function Home() {
 
       <SocLabSummary />
 
+      <QuickLearning />
+
       <Terminal />
 
       <section id="certifications" className="mx-auto max-w-7xl px-5 py-20">
@@ -914,7 +913,7 @@ export default function Home() {
                 Contact
               </p>
               <h2 className="max-w-lg text-4xl font-semibold tracking-[-0.05em] text-[#171411] md:text-6xl">
-                Let&apos;s secure and improve your systems.
+                Got a role in mind? Let&apos;s talk.
               </h2>
             </div>
 
@@ -964,7 +963,7 @@ export default function Home() {
       <footer className="border-t border-[#171411]/10 py-6">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 px-5 text-[10px] uppercase tracking-[0.14em] text-[#171411]/50 sm:flex-row">
           <span>MMT © {new Date().getFullYear()}</span>
-          <span>Next.js • TypeScript • Tailwind</span>
+          <span>Built by me with Next.js</span>
           <a href="#home" className="hover:text-[#171411]">
             Back to top ↑
           </a>
