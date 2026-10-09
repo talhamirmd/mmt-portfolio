@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import CtfBar from "./components/CtfBar";
 import QuickLearning from "./components/QuickLearning";
 import SocLabSummary from "./components/SocLabSummary";
 import TechStack from "./components/TechStack";
@@ -362,6 +363,7 @@ export default function Home() {
             </a>
           </motion.div>
         )}
+        {!menuOpen && <CtfBar />}
       </header>
 
       <section

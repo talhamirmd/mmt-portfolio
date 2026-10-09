@@ -7,7 +7,8 @@ type Block =
   | { type: "h"; text: string }
   | { type: "ul" | "ol"; items: string[] }
   | { type: "code"; text: string }
-  | { type: "img"; src: string; alt: string; caption?: string };
+  | { type: "img"; src: string; alt: string; caption?: string }
+  | { type: "link"; href: string; text: string };
 
 // To add a story: add an entry to this list. Write the body as blocks
 // (paragraphs, headings, lists, code), or point `component` at a custom
@@ -103,6 +104,67 @@ export const stories: Story[] = [
       {
         type: "p",
         text: "HTTPS means the connection is private. It doesn't mean the site is honest. Scam sites get free certificates too, so a scam can still show \"Connection is secure\". Use HTTPS as the minimum, then still check the web address and trust your gut.",
+      },
+    ],
+  },
+  {
+    slug: "ctf-explained",
+    title: "CTF explained",
+    tag: "Quick Learning",
+    readTime: "4 min read",
+    summary: "What a Capture The Flag actually is, the different kinds, and a small one I built so you can try it.",
+    body: [
+      {
+        type: "p",
+        text: "The first time someone told me they were \"doing a CTF\", I assumed it was some kind of exam. It isn't. It's closer to a puzzle hunt for people who like taking things apart.",
+      },
+      { type: "h", text: "So what is it?" },
+      {
+        type: "p",
+        text: "CTF stands for Capture The Flag. Somewhere inside a challenge, the organisers have hidden a short piece of text called a flag, usually something like flag{s0me_t3xt}. Your job is to find it and submit it. Get it right and you score points.",
+      },
+      {
+        type: "p",
+        text: "The flag might be buried in a web page's source code, hidden inside an image, locked behind a weak password, or tucked away in a program you have to pull apart. Finding it means using the same skills you'd use in real security work, just somewhere it's legal and nobody gets hurt.",
+      },
+      { type: "h", text: "The two main styles" },
+      {
+        type: "ul",
+        items: [
+          "Jeopardy. A board of challenges split into categories, each worth points. You solve them in any order. This is the most common style and the best place to start.",
+          "Attack-defence. Every team gets the same set of vulnerable services. You patch your own while attacking everyone else's. Fast, chaotic, and usually for more experienced teams.",
+        ],
+      },
+      { type: "h", text: "What the challenges look like" },
+      {
+        type: "ul",
+        items: [
+          "Web: finding holes in websites, like hidden pages, bad logins or SQL injection.",
+          "Crypto: breaking or decoding something that was encrypted badly.",
+          "Forensics: digging through files, disk images or network captures to find what's hidden.",
+          "Reverse engineering: taking a program apart to see what it really does.",
+          "Pwn: abusing a bug in a program to make it do something it shouldn't.",
+          "OSINT: tracking something down using only public information.",
+        ],
+      },
+      { type: "h", text: "Why bother?" },
+      {
+        type: "p",
+        text: "Because reading about SQL injection and actually pulling data out with it are very different things. Getting stuck on a challenge and working your way out sticks in your head far longer than any article does.",
+      },
+      { type: "h", text: "Try mine" },
+      {
+        type: "p",
+        text: "I built a small one so you can see how it works without signing up for a big competition. It has four missions, each split into three phases. Solve a phase, submit the flag, and the next one unlocks. Every phase has three hints if you get stuck, and your progress saves to your account.",
+      },
+      {
+        type: "p",
+        text: "You don't need anything special: your browser's dev tools (press F12), CyberChef for decoding things, and Python if you feel like scripting something. It runs on a free server, so give it a few seconds to wake up the first time.",
+      },
+      { type: "link", href: "https://mmt-ctf.onrender.com", text: "Play MMT_CTF" },
+      {
+        type: "p",
+        text: "If you get hooked, picoCTF is a great free place to keep going as a beginner, and CTFtime.org lists competitions happening around the world.",
       },
     ],
   },
@@ -208,6 +270,19 @@ function renderBlock(block: Block, index: number) {
         <h3 key={index} className="pt-2 text-base font-medium text-[#171411]">
           {block.text}
         </h3>
+      );
+    case "link":
+      return (
+        <p key={index}>
+          <a
+            href={block.href}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-[#171411] px-5 py-3 text-[10px] font-medium uppercase tracking-[0.14em] !text-white transition-transform duration-200 hover:-translate-y-0.5"
+          >
+            {block.text} ↗
+          </a>
+        </p>
       );
     case "img":
       return (
