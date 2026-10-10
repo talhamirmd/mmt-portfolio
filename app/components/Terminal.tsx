@@ -26,7 +26,7 @@ IT Support Specialist @ DesignTech Engineering Consultants, Riyadh
 focus: security operations, incident response, vulnerability management`,
 
   experience: `2026 - now    IT Support Specialist          DesignTech Engineering Consultants
-2025 - 2026   Associate Software Engineer    Hodos 360 LLC
+2026          Associate Software Engineer    Hodos 360 LLC
 2025          Cyber Security Intern          CDAC Bangalore
 2024 - 2025   Data Quality Analyst Intern    Rooman Technologies
 2023 - 2024   Web Developer                  Colt Assist-Ultinity Technologies`,
@@ -45,7 +45,7 @@ fashion-recommendation-system  opencv + resnet50 outfit recommendations
 [x] Cloud Security Engineer (CCSE) - EC-Council
 [x] Google Cybersecurity Professional Certificate
 [x] Fortinet Certified Fundamentals Cybersecurity
-[x] SOC Analyst Training - Ehack Academy
+[x] Cyber Security Course / Training - Devtown
 [x] Introduction to Cyber Security - Cisco`,
 
   lab: `kali (attacker) -> windows host (sysmon + wazuh agent) -> wazuh manager -> triage
